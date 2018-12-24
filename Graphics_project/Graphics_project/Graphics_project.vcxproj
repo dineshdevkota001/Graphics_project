@@ -121,13 +121,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\..\Downloads\Compressed\glad\src\glad.c" />
     <ClCompile Include="Display.cpp" />
-    <ClCompile Include="glad.c" />
+    <ClCompile Include="Fileman.cpp" />
     <ClCompile Include="G_items.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Display.h" />
+    <ClInclude Include="Fileman.h" />
     <ClInclude Include="G_items.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

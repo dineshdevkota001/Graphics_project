@@ -1,31 +1,34 @@
 #pragma once
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
-#include<iostream>
+#include"Fileman.h"
 
 using namespace std;
 
 class G_items
 {
-	const char *vertexShaderSource = "#version 330 core\n"
-		"layout (location = 0) in vec3 aPos;\n"
+	const char *vertexShaderSource = "#version 130 \n"
+		"in vec3 aPos;\n"
 		"void main()\n"
 		"{\n"
-		"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+		"   gl_Position =vec4(aPos.x,aPos.y,aPos.z,1.0f);\n"
 		"}\0";
 
 	//Fragment shader in GLSL
 
-	const char *fragmentShaderSource = "#version 330 core\n"
+	const char *fragmentShaderSource = "#version 130\n"
 		"out vec4 FragColor;\n"
 		"void main()\n"
 		"{\n"
-		"   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-		"}\n\0";
+		"   FragColor = vec4(1.0f,0.5f,0.2f,1.0f);\n"
+		"}\0";
 
 	GLuint vertexShader, fragmentShader, shaderProgram;
-	unsigned int VBO, VAO;
+	unsigned int VBO, VAO, EBO;
 
+	int success;
+	char infoLog[512];
+	Fileman f;
 public:
 	
 	G_items();

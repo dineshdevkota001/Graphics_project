@@ -12,9 +12,10 @@ int Display::create_window(){
 		cout << "GLFW NOT INITIATED!!!" << endl;
 	}
 
+	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+	//glfwWindowHint(GLFW_CONTEXT_REVISION, 0);
 
 	cout << "loaded glfw contexts" << endl;
 
@@ -36,7 +37,6 @@ int Display::create_window(){
 		return -1;
 	}
 	cout << "glad initiated!!!" << endl;
-	Display::refresh_window();
 	return 0;
 }
 
@@ -57,7 +57,8 @@ void Display::refresh_window() {
 
 	while (!glfwWindowShouldClose(window))
 	{
-		glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
+		Display::processInput();
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		graphics.useprogram();
