@@ -4,14 +4,14 @@
 
 Fileman::Fileman()
 {
-	s = "object";
+	s = "compressed";
 	Fileman::imp_obj();
 }
 
 Fileman::Fileman(string a):s(a) {}
 
 void Fileman::imp_obj(){
-	Fileman::imp_mtl();
+	//Fileman::imp_mtl();
 	ifstream file;
 	int i = 0, j = 0, k = 0;
 	file.open(s+".obj");
@@ -19,7 +19,7 @@ void Fileman::imp_obj(){
 		cout << "cannot open file" << endl;
 		exit(1);
 	}
-
+	float max = 0;
 	for (string line; getline(file, line); )
 	{
 		istringstream in(line);
@@ -30,17 +30,21 @@ void Fileman::imp_obj(){
 		{
 			float x, y, z;
 			in >> x >> y >> z;
-			vertices[++i] = x/2.15;
-			vertices[++i] = y/2.15;
-			vertices[++i] = z/2.15;
+			vertices[i++] = x;
+			if (fabs(x) > max) max = fabs(x);
+			vertices[i++] = y;
+			if (fabs(y) > fabs(max)) max = fabs(y);
+			vertices[i++] = z;
+			if (fabs(z) > fabs(max)) max = fabs(z);
+
 			continue;
 		}
 		else if (type == "vn") {
 			float x, y, z;
 			in >> x >> y >> z;
-			normals[++j] = x;
-			normals[++j] = y;
-			normals[++j] = z;
+			normals[j++] = x;
+			normals[j++] = y;
+			normals[j++] = z;
 			continue;
 		}
 		else if (type == "f") {
@@ -48,32 +52,40 @@ void Fileman::imp_obj(){
 			char l;
 			for (int i = 0; i < 3; i++) {
 				in >> x >> l >> l >> a;
-				indices[++k] = x;
+				indices[k++] = x - 1;
 			}
 			continue;
 		}
 
 	}
 	nov = i;
-	non = j;
-	nof = k;
-	
-	for (int m = 0; m < nof; m) {
-		cout << indices[++m] << "\t";
-		cout << indices[++m] << "\t";
-		cout << indices[++m] << endl;
+	non = j+1;
+	nof = k+1;
+	for (int m = 0; m < nov; m) {
+		vertices[m++] /= max;
+		vertices[m++] /= max;
+		vertices[m++] /= max;
+	}
+	/*for (int m = 0; m < nof; m) {
+		cout << indices[m++] << "\t";
+		cout << indices[m++] << "\t";
+		cout << indices[m++] << endl;
 	}
 
 	for (int m = 0; m < non; m) {
-		cout << normals[++m] << "\t";
-		cout << normals[++m] << "\t";
-		cout << normals[++m] << endl;
+		cout << normals[m++] << "\t";
+		cout << normals[m++] << "\t";
+		cout << normals[m++] << endl;
 	}
 	for (int m = 0; m <nov; m) {
-		cout << vertices[++m] << "\t";
-		cout << vertices[++m] << "\t";
-		cout << vertices[++m] << endl;
+		vertices[m] /= max;
+		cout << vertices[m++]*max << "\t";
+		vertices[m] /= max;
+		cout << vertices[m++] *max<< "\t";
+		vertices[m] /= max;
+		cout << vertices[m++] *max<< endl;
 	}
+	*/
 	file.close();
 }
 

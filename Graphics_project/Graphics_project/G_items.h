@@ -29,6 +29,23 @@ class G_items
 	int success;
 	char infoLog[512];
 	Fileman f;
+	float vertices[24] = {
+		0.5f,  0.5f, 0.0f,  // top right
+		0.5f, -0.5f, 0.0f,  // bottom right
+	   -0.5f, -0.5f, 0.0f,  // bottom left
+	   -0.5f,  0.5f, 0.0f,
+		0.25f,  0.25f, 0.5f,  // top right
+		0.25f, -0.25f, 0.5f,  // bottom right
+	   -0.25f, -0.5f, 0.5f,  // bottom left
+	   -0.25f,  0.5f, 0.5f   // top left 
+	};
+	unsigned int indices[12] = {  // note that we start from 0!
+		0, 1, 3,  // first Triangle
+		1, 2, 3,
+		4, 5, 6,
+		4, 6, 7
+	};
+
 public:
 	
 	G_items();

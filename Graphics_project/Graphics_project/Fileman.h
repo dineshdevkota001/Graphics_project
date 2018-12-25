@@ -40,7 +40,7 @@ public:
 
 	float* vertices = new float[10000];
 	float* normals = new float[10000];
-	unsigned int* indices= new unsigned int[10000];
+	int* indices= new int[10000];
 	material* mat = new material[20];
 	int nov, nof, non, nom;
 
