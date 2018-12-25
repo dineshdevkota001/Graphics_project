@@ -28,7 +28,6 @@ class G_items
 
 	int success;
 	char infoLog[512];
-	Fileman f;
 	float vertices[24] = {
 		0.5f,  0.5f, 0.0f,  // top right
 		0.5f, -0.5f, 0.0f,  // bottom right
@@ -47,7 +46,8 @@ class G_items
 	};
 
 public:
-	
+	Fileman f;
+
 	G_items();
 
 	void compileVS();

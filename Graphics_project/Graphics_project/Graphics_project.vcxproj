@@ -126,11 +126,13 @@
     <ClCompile Include="Fileman.cpp" />
     <ClCompile Include="G_items.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Transformation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Display.h" />
     <ClInclude Include="Fileman.h" />
     <ClInclude Include="G_items.h" />
+    <ClInclude Include="Transformation.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

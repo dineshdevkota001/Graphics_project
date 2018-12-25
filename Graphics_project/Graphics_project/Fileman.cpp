@@ -4,7 +4,7 @@
 
 Fileman::Fileman()
 {
-	s = "compressed";
+	s = "object";
 	Fileman::imp_obj();
 }
 
@@ -19,7 +19,7 @@ void Fileman::imp_obj(){
 		cout << "cannot open file" << endl;
 		exit(1);
 	}
-	float max = 0;
+	float max = 5;
 	for (string line; getline(file, line); )
 	{
 		istringstream in(line);
@@ -30,7 +30,7 @@ void Fileman::imp_obj(){
 		{
 			float x, y, z;
 			in >> x >> y >> z;
-			vertices[i++] = x;
+			vertices[i++] = -x;
 			if (fabs(x) > max) max = fabs(x);
 			vertices[i++] = y;
 			if (fabs(y) > fabs(max)) max = fabs(y);
@@ -59,33 +59,13 @@ void Fileman::imp_obj(){
 
 	}
 	nov = i;
-	non = j+1;
-	nof = k+1;
+	non = j;
+	nof = k;
 	for (int m = 0; m < nov; m) {
 		vertices[m++] /= max;
 		vertices[m++] /= max;
 		vertices[m++] /= max;
 	}
-	/*for (int m = 0; m < nof; m) {
-		cout << indices[m++] << "\t";
-		cout << indices[m++] << "\t";
-		cout << indices[m++] << endl;
-	}
-
-	for (int m = 0; m < non; m) {
-		cout << normals[m++] << "\t";
-		cout << normals[m++] << "\t";
-		cout << normals[m++] << endl;
-	}
-	for (int m = 0; m <nov; m) {
-		vertices[m] /= max;
-		cout << vertices[m++]*max << "\t";
-		vertices[m] /= max;
-		cout << vertices[m++] *max<< "\t";
-		vertices[m] /= max;
-		cout << vertices[m++] *max<< endl;
-	}
-	*/
 	file.close();
 }
 
